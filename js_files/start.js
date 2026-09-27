@@ -74,6 +74,18 @@ function endIntro() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  var playBtn = document.querySelector('[data-action="play"]');
+  if (playBtn) {
+    playBtn.addEventListener("click", function () {
+      getPlayGround();
+    });
+  }
+  var devBtn = document.querySelector('[data-action="developer"]');
+  if (devBtn) {
+    devBtn.addEventListener("click", function () {
+      getDeveloperData();
+    });
+  }
   startMainLoading();
   setTimeout(function () {
     stopMainLoading();

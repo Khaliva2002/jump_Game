@@ -1,0 +1,39 @@
+.dev-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  font-family: var(--font-main);
+}
+
+.dev-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-dino);
+}
+
+.dev-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-accent);
+  min-height: 24px;
+}
+
+.dev-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-dino);
+  min-height: 80px;
+  white-space: pre-wrap;
+}
+
+.dev-caret {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--color-cactus);
+  animation: dev-blink 0.8s steps(2) infinite;
+}
+
+@keyframes dev-blink {
+  50% { opacity: 0; }
+}
