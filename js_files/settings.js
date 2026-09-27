@@ -4,6 +4,7 @@ function getCurrentTheme() {
 }
 
 function changeTheme(value) {
+  if (value === getCurrentTheme()) return;
   if (value === "dark") {
     document.documentElement.classList.add("dark");
   } else if (value === "light") {
@@ -15,6 +16,11 @@ function changeTheme(value) {
 }
 
 function saveThemeOnClient() {
+  if (document.documentElement.classList.contains("dark")) {
+    console.log("here");
+  } else {
+    console.log("not here");
+  }
 }
 
 export default function displaySettings(AValue) {
