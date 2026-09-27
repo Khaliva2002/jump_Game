@@ -36,6 +36,9 @@
 .main-page .menu-btn:hover {
   background-color: var(--color-cactus);
 }
+.main-page .menu-btn.active {
+  background-color: var(--color-cactus);
+}
 
 .main-page .play-board {
   flex: 1 1 auto;

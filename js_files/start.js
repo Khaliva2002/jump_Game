@@ -1,3 +1,5 @@
+import { getDeveloperData, getPlayGround } from "./main_page.js";
+
 function startMainLoading() {
   var root = document.getElementById("root");
   if (!root || document.getElementById("main-loading")) return;
@@ -95,4 +97,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 4000);
   }, 2000);
 });
-

@@ -1,0 +1,136 @@
+.play-stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.play-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-dino);
+}
+
+.play-hud .hud-score {
+  letter-spacing: 2px;
+}
+
+.play-hud .hud-hi {
+  color: var(--color-accent);
+}
+
+.play-scene {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 40vw, 300px);
+  background-color: var(--color-sand);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.play-scene .scene-sun {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--color-sun);
+}
+
+.play-scene .scene-cloud {
+  position: absolute;
+  border-radius: 999px;
+  background-color: var(--color-card);
+  opacity: 0.9;
+}
+
+.play-scene .scene-cloud.c1 {
+  top: 36px;
+  left: 12%;
+  width: 74px;
+  height: 22px;
+}
+
+.play-scene .scene-cloud.c2 {
+  top: 70px;
+  left: 62%;
+  width: 56px;
+  height: 18px;
+}
+
+.play-scene .scene-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 34px;
+  height: 2px;
+  background-color: var(--color-ground);
+}
+
+.play-scene .scene-player {
+  position: absolute;
+  left: 48px;
+  bottom: 36px;
+  width: 40px;
+  height: 46px;
+  background-color: var(--color-dino);
+  border-radius: 6px 10px 4px 4px;
+}
+
+.play-scene .scene-player::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-card);
+}
+
+.play-scene .scene-cactus {
+  position: absolute;
+  right: 22%;
+  bottom: 36px;
+  width: 20px;
+  height: 44px;
+  background-color: var(--color-cactus);
+  border-radius: 8px 8px 2px 2px;
+}
+
+.play-scene .scene-cactus::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 8px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: var(--color-cactus);
+}
+
+.play-scene .scene-cactus::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: -8px;
+  width: 8px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: var(--color-cactus);
+}
+
+.play-hint {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-align: center;
+}

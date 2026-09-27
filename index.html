@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jump Game</title>
+    <link rel="stylesheet" href="css_files/fonts.css" />
     <link rel="stylesheet" href="css_files/intialCSS.css" />
     <link rel="stylesheet" href="css_files/vars.css" />
     <link rel="stylesheet" href="css_files/responsive.css" />
     <link rel="stylesheet" href="css_files/theme.css" />
     <link rel="stylesheet" href="css_files/main-page.css" />
+    <link rel="stylesheet" href="css_files/playground.css" />
+    <link rel="stylesheet" href="css_files/developer.css" />
+    <link rel="stylesheet" href="css_files/notify.css" />
     <link rel="stylesheet" href="css_files/loading.css" />
     <link rel="stylesheet" href="css_files/intro.css" />
   </head>
@@ -16,13 +20,26 @@
     <main id="root" class="root">
       <div class="main-page is-hidden">
         <aside class="side-menu">
-          <button type="button" class="menu-btn" data-action="play">Play</button>
-          <button type="button" class="menu-btn" data-action="scores">Score Board</button>
-          <button type="button" class="menu-btn" data-action="developer">Developer</button>
+          <button type="button" class="menu-btn" data-action="play">
+            Play
+          </button>
+          <button type="button" class="menu-btn" data-action="scores">
+            Score Board
+          </button>
+          <button type="button" class="menu-btn" data-action="developer">
+            Developer
+          </button>
+          <button type="button" class="menu-btn" data-action="settings">
+            Settings
+          </button>
         </aside>
         <div class="play-board"></div>
       </div>
     </main>
-    <script src="js_files/start.js"></script>
+    <script type="module" src="js_files/notfications.js"></script>
+    <script type="module" src="js_files/playG.js"></script>
+    <script type="module" src="js_files/main_page.js"></script>
+    <script type="module" src="js_files/start.js"></script>
+    <script type="module" src="js_files/sounds.js"></script>
   </body>
 </html>

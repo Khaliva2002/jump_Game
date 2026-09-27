@@ -1,5 +1,6 @@
 :root {
-  --font-main: "Arial", "Helvetica", sans-serif;
+  --font-main: "Edu QLD Hand", "Arial", cursive;
+  --font-second: "Playwrite BE WAL Guides", "Arial", cursive;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;

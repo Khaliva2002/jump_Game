@@ -1,0 +1,30 @@
+#notify-box {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: calc(var(--z-overlay) + 10);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--space-sm);
+  width: min(420px, 90vw);
+  pointer-events: none;
+}
+
+.notify-item {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid;
+  border-radius: var(--radius-md);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.notify-item.is-gone {
+  opacity: 0;
+}
