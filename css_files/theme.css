@@ -1,0 +1,48 @@
+:root {
+  --color-sand: #f7f3e8;
+  --color-ground: #535353;
+  --color-dino: #3a3a3a;
+  --color-cactus: #2f7d32;
+  --color-cactus-light: #4ade80;
+  --color-sky: #87ceeb;
+  --color-sun: #facc15;
+  --color-night-bg: #1c1917;
+  --color-night-text: #e7e5e4;
+  --color-danger: #ef4444;
+  --color-accent: #f59e0b;
+  --color-card: #ffffff;
+  --color-muted: #a8a29e;
+}
+
+.dark {
+  --color-sand: var(--color-night-bg);
+  --color-card: #292524;
+  --color-dino: var(--color-night-text);
+}
+
+.t-sand { color: var(--color-sand); }
+.bg-sand { background-color: var(--color-sand); }
+.t-ground { color: var(--color-ground); }
+.bg-ground { background-color: var(--color-ground); }
+.t-dino { color: var(--color-dino); }
+.bg-dino { background-color: var(--color-dino); }
+.t-cactus { color: var(--color-cactus); }
+.bg-cactus { background-color: var(--color-cactus); }
+.t-cactus-light { color: var(--color-cactus-light); }
+.bg-cactus-light { background-color: var(--color-cactus-light); }
+.t-sky { color: var(--color-sky); }
+.bg-sky { background-color: var(--color-sky); }
+.t-sun { color: var(--color-sun); }
+.bg-sun { background-color: var(--color-sun); }
+.t-night-bg { color: var(--color-night-bg); }
+.bg-night-bg { background-color: var(--color-night-bg); }
+.t-night-text { color: var(--color-night-text); }
+.bg-night-text { background-color: var(--color-night-text); }
+.t-danger { color: var(--color-danger); }
+.bg-danger { background-color: var(--color-danger); }
+.t-accent { color: var(--color-accent); }
+.bg-accent { background-color: var(--color-accent); }
+.t-card { color: var(--color-card); }
+.bg-card { background-color: var(--color-card); }
+.t-muted { color: var(--color-muted); }
+.bg-muted { background-color: var(--color-muted); }

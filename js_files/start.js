@@ -1,0 +1,81 @@
+function startMainLoading() {
+  var root = document.getElementById("root");
+  if (!root || document.getElementById("main-loading")) return;
+
+  var overlay = document.createElement("div");
+  overlay.id = "main-loading";
+
+  var text = document.createElement("div");
+  text.className = "loader-text";
+  text.textContent = "JUMP GAME";
+
+  var track = document.createElement("div");
+  track.className = "loader-track";
+
+  var bar = document.createElement("div");
+  bar.className = "loader-bar";
+
+  track.appendChild(bar);
+  overlay.appendChild(text);
+  overlay.appendChild(track);
+  root.appendChild(overlay);
+}
+
+function stopMainLoading() {
+  var overlay = document.getElementById("main-loading");
+  if (!overlay) return;
+  overlay.classList.add("hidden");
+  setTimeout(function () {
+    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+  }, 450);
+}
+
+function startIntro() {
+  var root = document.getElementById("root");
+  if (!root || document.getElementById("intro")) return;
+
+  var overlay = document.createElement("div");
+  overlay.id = "intro";
+
+  var inner = document.createElement("div");
+  inner.className = "intro-inner";
+
+  var dino = document.createElement("div");
+  dino.className = "intro-dino";
+  dino.textContent = "🦖";
+
+  var title = document.createElement("div");
+  title.className = "intro-title";
+  title.textContent = "JUMP GAME";
+
+  var sub = document.createElement("div");
+  sub.className = "intro-sub";
+  sub.textContent = "GET READY";
+
+  inner.appendChild(dino);
+  inner.appendChild(title);
+  inner.appendChild(sub);
+  overlay.appendChild(inner);
+  root.appendChild(overlay);
+}
+
+function endIntro() {
+  var overlay = document.getElementById("intro");
+  if (!overlay) return;
+  overlay.classList.add("hidden");
+  setTimeout(function () {
+    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+  }, 3000);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  startMainLoading();
+  setTimeout(function () {
+    stopMainLoading();
+    startIntro();
+    setTimeout(function () {
+      endIntro();
+    }, 4000);
+  }, 2000);
+});
+

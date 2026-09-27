@@ -1,0 +1,16 @@
+:root {
+  --font-main: "Cairo", "Tahoma", sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --game-w: 900px;
+  --game-h: 300px;
+  --ground-y: 250px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --z-overlay: 50;
+  --layout-max: 1024px;
+  --layout-pad: clamp(12px, 4vw, 24px);
+}
