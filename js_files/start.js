@@ -99,6 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
       getScoreBoard();
     });
   }
+  var settingsBtn = document.querySelector('[data-action="settings"]');
+  if (settingsBtn) {
+    settingsBtn.addEventListener("click", function () {
+      getSettingsBoard();
+    });
+  }
   startMainLoading();
   setTimeout(function () {
     stopMainLoading();

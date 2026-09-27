@@ -1,0 +1,56 @@
+.settings-board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  font-family: var(--font-main);
+}
+
+.settings-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.settings-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-dino);
+}
+
+.settings-row {
+  font-size: 15px;
+  color: var(--color-dino);
+}
+
+.settings-value {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.settings-divider {
+  height: 1px;
+  background-color: var(--color-muted);
+}
+
+.settings-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.settings-actions .menu-btn {
+  flex: 1 1 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-dino);
+  color: var(--color-card);
+  font-family: var(--font-main);
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .settings-actions {
+    flex-direction: column;
+  }
+}
