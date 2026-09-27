@@ -1,4 +1,5 @@
 import { getDeveloperData, getPlayGround } from "./main_page.js";
+import { printNotify } from "./notfications.js";
 
 function startMainLoading() {
   var root = document.getElementById("root");
@@ -86,6 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (devBtn) {
     devBtn.addEventListener("click", function () {
       getDeveloperData();
+    });
+  }
+  var scoreBtn = document.querySelector('[data-action="scores"]');
+  if (scoreBtn) {
+    scoreBtn.addEventListener("click", function () {
+      printNotify("You are offline current time", "warning");
     });
   }
   startMainLoading();
