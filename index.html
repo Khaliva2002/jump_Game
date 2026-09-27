@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,13 +8,21 @@
     <link rel="stylesheet" href="css_files/vars.css" />
     <link rel="stylesheet" href="css_files/responsive.css" />
     <link rel="stylesheet" href="css_files/theme.css" />
+    <link rel="stylesheet" href="css_files/main-page.css" />
     <link rel="stylesheet" href="css_files/loading.css" />
     <link rel="stylesheet" href="css_files/intro.css" />
   </head>
-  <body
-    class="bg-stone-100 min-h-screen flex flex-col items-center justify-center"
-  >
-    <main id="root" class="root"></main>
+  <body>
+    <main id="root" class="root">
+      <div class="main-page is-hidden">
+        <aside class="side-menu">
+          <button type="button" class="menu-btn" data-action="play">Play</button>
+          <button type="button" class="menu-btn" data-action="scores">Score Board</button>
+          <button type="button" class="menu-btn" data-action="developer">Developer</button>
+        </aside>
+        <div class="play-board"></div>
+      </div>
+    </main>
     <script src="js_files/start.js"></script>
   </body>
 </html>

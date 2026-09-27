@@ -61,10 +61,15 @@ function startIntro() {
 
 function endIntro() {
   var overlay = document.getElementById("intro");
-  if (!overlay) return;
+  var page = document.querySelector(".main-page");
+  if (!overlay) {
+    if (page) page.classList.remove("is-hidden");
+    return;
+  }
   overlay.classList.add("hidden");
   setTimeout(function () {
     if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    if (page) page.classList.remove("is-hidden");
   }, 3000);
 }
 
