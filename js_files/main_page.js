@@ -1,4 +1,5 @@
 import displayDevData from "./dev.js";
+import { printNotify } from "./notfications.js";
 import displayPlayGround from "./playG.js";
 
 var currentDisplay = null;
@@ -15,7 +16,9 @@ function getDeveloperData() {
   currentDisplay = cd;
 }
 
-function getScoreBoard() {}
+function getScoreBoard() {
+  printNotify("You are offline current time", "warning");
+}
 
 function getSettingsBoard() {}
 
