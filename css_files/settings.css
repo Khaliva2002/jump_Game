@@ -49,6 +49,11 @@
   text-align: center;
 }
 
+.settings-actions .menu-btn.is-active {
+  background-color: var(--color-accent);
+  color: var(--color-night-bg);
+}
+
 @media (max-width: 600px) {
   .settings-actions {
     flex-direction: column;
