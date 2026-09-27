@@ -1,3 +1,5 @@
+import { saveThemeOnClient } from "../settings.js";
+
 document.addEventListener("THEME_CHANGED", function () {
-  console.log("changed");
+  saveThemeOnClient();
 });

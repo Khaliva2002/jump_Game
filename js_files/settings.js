@@ -17,9 +17,9 @@ function changeTheme(value) {
 
 function saveThemeOnClient() {
   if (document.documentElement.classList.contains("dark")) {
-    console.log("here");
+    localStorage.setItem("dark", true);
   } else {
-    console.log("not here");
+    localStorage.removeItem("dark");
   }
 }
 
@@ -89,3 +89,9 @@ export default function displaySettings(AValue) {
 }
 
 export { getCurrentTheme, changeTheme, saveThemeOnClient };
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("dark") !== null) {
+    changeTheme("dark");
+  }
+});
