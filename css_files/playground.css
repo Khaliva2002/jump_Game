@@ -78,21 +78,172 @@
   position: absolute;
   left: 48px;
   bottom: 36px;
-  width: 40px;
-  height: 46px;
-  background-color: var(--color-dino);
-  border-radius: 6px 10px 4px 4px;
+  width: 36px;
+  height: 64px;
+  background-color: transparent;
 }
 
-.play-scene .scene-player::after {
+.play-scene .scene-player .skel-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-head::before {
   content: "";
   position: absolute;
-  top: 8px;
-  right: 7px;
-  width: 6px;
-  height: 6px;
+  top: 5px;
+  left: 4px;
+  width: 3px;
+  height: 4px;
   border-radius: 50%;
-  background-color: var(--color-card);
+  background-color: var(--color-dino);
+  box-shadow: 5px 0 0 var(--color-dino);
+}
+
+.play-scene .scene-player .skel-spine {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 22px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-rib {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-rib.r1 {
+  top: 23px;
+  width: 24px;
+}
+
+.play-scene .scene-player .skel-rib.r2 {
+  top: 29px;
+  width: 20px;
+}
+
+.play-scene .scene-player .skel-rib.r3 {
+  top: 35px;
+  width: 16px;
+}
+
+.play-scene .scene-player .skel-arm {
+  position: absolute;
+  top: 22px;
+  width: 5px;
+  height: 17px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-arm.left {
+  left: 1px;
+  transform: rotate(8deg);
+}
+
+.play-scene .scene-player .skel-arm.right {
+  right: 1px;
+  transform: rotate(-8deg);
+}
+
+.play-scene .scene-player .skel-pelvis {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 7px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-leg {
+  position: absolute;
+  top: 49px;
+  width: 6px;
+  height: 15px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 2px solid var(--color-dino);
+}
+
+.play-scene .scene-player .skel-leg.left {
+  left: 8px;
+}
+
+.play-scene .scene-player .skel-leg.right {
+  right: 8px;
+}
+
+.play-scene .scene-player.is-running {
+  animation: skel-bob 0.4s ease-in-out infinite;
+}
+
+.play-scene .scene-player.is-running .skel-leg.left {
+  animation: skel-leg-run 0.4s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+.play-scene .scene-player.is-running .skel-leg.right {
+  animation: skel-leg-run 0.4s ease-in-out infinite alternate-reverse;
+  transform-origin: top center;
+}
+
+.play-scene .scene-player.is-running .skel-arm.left {
+  animation: skel-arm-run 0.4s ease-in-out infinite alternate-reverse;
+  transform-origin: top center;
+}
+
+.play-scene .scene-player.is-running .skel-arm.right {
+  animation: skel-arm-run 0.4s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+@keyframes skel-leg-run {
+  from {
+    transform: rotate(22deg);
+  }
+  to {
+    transform: rotate(-22deg);
+  }
+}
+
+@keyframes skel-arm-run {
+  from {
+    transform: rotate(28deg);
+  }
+  to {
+    transform: rotate(-28deg);
+  }
+}
+
+@keyframes skel-bob {
+  0%,
+  100% {
+    margin-bottom: 0;
+  }
+  50% {
+    margin-bottom: 3px;
+  }
 }
 
 .play-scene .scene-cactus {
