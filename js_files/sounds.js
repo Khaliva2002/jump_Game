@@ -10,7 +10,20 @@ function runSound(nameSound) {
   audio.play();
   var id = nextSoundId;
   nextSoundId++;
-  sounds.push({ id: id, name: nameSound, audio: audio });
+  var entry = { id: id, name: nameSound, audio: audio, timer: null };
+  sounds.push(entry);
+  var stopAfterDuration = function () {
+    var ms = Math.ceil(audio.duration * 1000);
+    if (!isFinite(ms) || ms <= 0) return;
+    entry.timer = setTimeout(function () {
+      stopSound(id);
+    }, ms);
+  };
+  if (audio.readyState >= 1 && isFinite(audio.duration) && audio.duration > 0) {
+    stopAfterDuration();
+  } else {
+    audio.addEventListener("loadedmetadata", stopAfterDuration, { once: true });
+  }
   return id;
 }
 
@@ -18,6 +31,7 @@ function stopSound(idSound) {
   for (let i = 0; i < sounds.length; i++) {
     if (sounds[i].id === idSound) {
       try {
+        if (sounds[i].timer) clearTimeout(sounds[i].timer);
         sounds[i].audio.pause();
         sounds[i].audio.currentTime = 0;
       } catch (e) {}
