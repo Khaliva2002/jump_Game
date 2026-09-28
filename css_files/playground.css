@@ -279,9 +279,24 @@
 }
 
 .play-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--font-main);
-  font-size: 13px;
+  font-size: 28px;
   font-weight: 700;
-  color: var(--color-muted);
+  color: var(--color-dino);
   text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  opacity: 0.9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.play-hint .button-new {
+  color: var(--color-accent);
 }

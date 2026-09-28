@@ -1,3 +1,5 @@
+import BCONFIG from "./config/buttons.js";
+
 const currentStats = {
   gameStarted: false,
   playerState: "stop",
@@ -154,11 +156,11 @@ export default function displayPlayGround(AValue) {
 
   var hint = document.createElement("div");
   hint.className = "play-hint";
-  hint.textContent = "Press SPACE to jump";
+  hint.innerHTML = `press <span class='button-new'> ${BCONFIG.currentJump.name}</span> to start  `;
 
+  scene.appendChild(hint);
   stage.appendChild(hud);
   stage.appendChild(scene);
-  stage.appendChild(hint);
   board.appendChild(stage);
   return AValue;
 }
