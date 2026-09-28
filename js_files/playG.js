@@ -1,9 +1,30 @@
 import BCONFIG from "./config/buttons.js";
 
 const currentStats = {
+  isReady: false,
   gameStarted: false,
   playerState: "stop",
 };
+function setIntialStats() {
+  currentStats.isReady = false;
+  currentStats.gameStarted = false;
+  currentStats.playerState = "stop";
+}
+
+function startGame() {
+  currentStats.gameStarted = true;
+  document.dispatchEvent(new CustomEvent("GAME_STARTED"));
+  return;
+}
+function stopGame() {}
+function endGame() {}
+
+function setPlayerReady() {
+  currentStats.isReady = true;
+}
+function setPlayerNotReady() {
+  setIntialStats();
+}
 
 function makePlayerRun() {
   var player = document.getElementById("scenePlayer");
@@ -59,7 +80,20 @@ function makePlayerStop() {
   currentStats.playerState = "stop";
 }
 
+function removeHint() {
+  var hint = document.querySelector(".play-hint");
+  if (!hint) return;
+  if (hint.parentNode) hint.parentNode.removeChild(hint);
+}
+
+function makeScreenRun() {
+  var scene = document.getElementById("playScene");
+  if (!scene) return;
+  scene.classList.add("is-screen-running");
+}
+
 export default function displayPlayGround(AValue) {
+  setPlayerReady();
   var board = document.querySelector(".play-board");
   if (!board) return;
   board.innerHTML = "";
@@ -144,19 +178,17 @@ export default function displayPlayGround(AValue) {
   player.appendChild(skLegL);
   player.appendChild(skLegR);
 
-  var cactus = document.createElement("div");
-  cactus.className = "scene-cactus";
-
   scene.appendChild(sun);
   scene.appendChild(cloud1);
   scene.appendChild(cloud2);
   scene.appendChild(ground);
   scene.appendChild(player);
-  scene.appendChild(cactus);
 
   var hint = document.createElement("div");
+  var hintContentForPC = `press <span class='button-new'> ${BCONFIG.currentJump.name}</span> to start`;
+  var hintContentForMobile = "MOBILE";
   hint.className = "play-hint";
-  hint.innerHTML = `press <span class='button-new'> ${BCONFIG.currentJump.name}</span> to start  `;
+  hint.innerHTML = hintContentForPC;
 
   scene.appendChild(hint);
   stage.appendChild(hud);
@@ -165,4 +197,13 @@ export default function displayPlayGround(AValue) {
   return AValue;
 }
 
-export { currentStats, makePlayerRun, makePlayerStop };
+export {
+  currentStats,
+  makePlayerRun,
+  makePlayerStop,
+  startGame,
+  setPlayerReady,
+  setPlayerNotReady,
+  removeHint,
+  makeScreenRun,
+};

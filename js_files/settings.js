@@ -1,4 +1,5 @@
 import BCONFIG, { changeJumpButton, changeStopGameButton } from "./config/buttons.js";
+import { setPlayerNotReady } from "./playG.js";
 
 function getCurrentTheme() {
   if (document.documentElement.classList.contains("dark")) return "dark";
@@ -26,6 +27,7 @@ function saveThemeOnClient() {
 }
 
 export default function displaySettings(AValue) {
+  setPlayerNotReady();
   var board = document.querySelector(".play-board");
   if (!board) return;
   board.innerHTML = "";

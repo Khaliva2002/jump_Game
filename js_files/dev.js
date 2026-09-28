@@ -1,3 +1,5 @@
+import { setPlayerNotReady } from "./playG.js";
+
 const developer = {
   name: "Abdelrhman Khalifa",
   age: "1-12-2002",
@@ -23,6 +25,7 @@ const developer = {
 developer.calcAge();
 
 export default function displayDevData(AValue) {
+  setPlayerNotReady();
   var board = document.querySelector(".play-board");
   if (!board) return;
 
