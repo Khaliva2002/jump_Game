@@ -1,4 +1,6 @@
+import { stopGameSound } from "./events/play_ground_events.js";
 import { setPlayerNotReady } from "./playG.js";
+import { runSound, stopSound } from "./sounds.js";
 
 const developer = {
   name: "Abdelrhman Khalifa",
@@ -21,10 +23,22 @@ const developer = {
     return result;
   },
 };
+var typingSoundId = null;
+
+function startTyping() {
+  typingSoundId = runSound("typing.mp3", true);
+}
+
+function endTyping() {
+  if (typingSoundId === null) return;
+  stopSound(typingSoundId);
+  typingSoundId = null;
+}
 
 developer.calcAge();
 
 export default function displayDevData(AValue) {
+  stopGameSound();
   setPlayerNotReady();
   var board = document.querySelector(".play-board");
   if (!board) return;
@@ -67,6 +81,7 @@ export default function displayDevData(AValue) {
     if (!document.body.contains(textLine)) {
       clearInterval(window.__devTimer);
       window.__devTimer = null;
+      endTyping();
       return;
     }
     i++;
@@ -81,7 +96,11 @@ export default function displayDevData(AValue) {
     if (i >= fullStr.length) {
       clearInterval(window.__devTimer);
       window.__devTimer = null;
+      endTyping();
     }
   }, 35);
+  startTyping();
   return AValue;
 }
+
+export { startTyping, endTyping };

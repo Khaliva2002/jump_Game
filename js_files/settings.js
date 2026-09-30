@@ -1,4 +1,8 @@
-import BCONFIG, { changeJumpButton, changeStopGameButton } from "./config/buttons.js";
+import BCONFIG, {
+  changeJumpButton,
+  changeStopGameButton,
+} from "./config/buttons.js";
+import { stopGameSound } from "./events/play_ground_events.js";
 import { setPlayerNotReady } from "./playG.js";
 
 function getCurrentTheme() {
@@ -27,6 +31,7 @@ function saveThemeOnClient() {
 }
 
 export default function displaySettings(AValue) {
+  stopGameSound();
   setPlayerNotReady();
   var board = document.querySelector(".play-board");
   if (!board) return;
@@ -130,7 +135,8 @@ export default function displaySettings(AValue) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "menu-btn";
-      if (btnData.name === BCONFIG.currentJump.name) btn.classList.add("is-active");
+      if (btnData.name === BCONFIG.currentJump.name)
+        btn.classList.add("is-active");
       btn.textContent = btnData.name;
       btn.setAttribute("data-value", btnData.name);
       btn.addEventListener("click", function () {
@@ -139,7 +145,8 @@ export default function displaySettings(AValue) {
         var label = document.getElementById("settingsJumpValue");
         if (label) label.textContent = btnData.name;
         var all = jumpActions.querySelectorAll(".menu-btn");
-        for (var k = 0; k < all.length; k++) all[k].classList.remove("is-active");
+        for (var k = 0; k < all.length; k++)
+          all[k].classList.remove("is-active");
         btn.classList.add("is-active");
       });
       jumpActions.appendChild(btn);
@@ -161,7 +168,8 @@ export default function displaySettings(AValue) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "menu-btn";
-      if (btnData.name === BCONFIG.currentStopGame.name) btn.classList.add("is-active");
+      if (btnData.name === BCONFIG.currentStopGame.name)
+        btn.classList.add("is-active");
       btn.textContent = btnData.name;
       btn.setAttribute("data-value", btnData.name);
       btn.addEventListener("click", function () {
@@ -170,7 +178,8 @@ export default function displaySettings(AValue) {
         var label = document.getElementById("settingsStopValue");
         if (label) label.textContent = btnData.name;
         var all = stopActions.querySelectorAll(".menu-btn");
-        for (var k = 0; k < all.length; k++) all[k].classList.remove("is-active");
+        for (var k = 0; k < all.length; k++)
+          all[k].classList.remove("is-active");
         btn.classList.add("is-active");
       });
       stopActions.appendChild(btn);
