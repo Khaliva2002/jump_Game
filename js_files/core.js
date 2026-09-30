@@ -1,6 +1,8 @@
 import BCONFIG from "./config/buttons.js";
 import { currentStats, startGame } from "./playG.js";
+import { runSound } from "./sounds.js";
 
+let clickSoundID = null;
 function initEvents() {
   window.addEventListener("mousedown", (event) => {
     if (!currentStats.isReady) return;
@@ -22,6 +24,10 @@ function initEvents() {
       console.log("start");
       startGame();
     }
+  });
+
+  window.addEventListener("click", () => {
+    clickSoundID = runSound("click.mp3");
   });
 }
 
