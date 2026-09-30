@@ -1,12 +1,15 @@
-import { makePlayerRun, makeScreenRun, removeHint, sse } from "../playG.js";
+import { removeHint, makeScreenRun } from "../playG.js";
 import SCORE_CONFIG from "../config/score.js";
 import { val, t } from "../sc.js";
-
+import { createCactus } from "../obstacles/cactus.js";
+import { makePlayerRun, makePlayerStop } from "../player.js";
+import { sse } from "../sc.js";
 document.addEventListener("GAME_STARTED", () => {
   removeHint();
   makePlayerRun();
   makeScreenRun();
   sse();
+  document.dispatchEvent(new CustomEvent("START_OBSTACLES"));
 });
 
 document.addEventListener("ck_s_c", () => {

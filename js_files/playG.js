@@ -28,60 +28,6 @@ function setPlayerNotReady() {
   setIntialStats();
 }
 
-function makePlayerRun() {
-  var player = document.getElementById("scenePlayer");
-  if (!player) return;
-  player.innerHTML = "";
-  player.classList.add("is-running");
-
-  var classes = [
-    "skel-head",
-    "skel-spine",
-    "skel-rib r1",
-    "skel-rib r2",
-    "skel-rib r3",
-    "skel-arm left",
-    "skel-arm right",
-    "skel-pelvis",
-    "skel-leg left",
-    "skel-leg right",
-  ];
-  for (var i = 0; i < classes.length; i++) {
-    var part = document.createElement("div");
-    part.className = classes[i];
-    player.appendChild(part);
-  }
-
-  currentStats.playerState = "run";
-}
-
-function makePlayerStop() {
-  var player = document.getElementById("scenePlayer");
-  if (!player) return;
-  player.innerHTML = "";
-  player.classList.remove("is-running");
-
-  var classes = [
-    "skel-head",
-    "skel-spine",
-    "skel-rib r1",
-    "skel-rib r2",
-    "skel-rib r3",
-    "skel-arm left",
-    "skel-arm right",
-    "skel-pelvis",
-    "skel-leg left",
-    "skel-leg right",
-  ];
-  for (var i = 0; i < classes.length; i++) {
-    var part = document.createElement("div");
-    part.className = classes[i];
-    player.appendChild(part);
-  }
-
-  currentStats.playerState = "stop";
-}
-
 function removeHint() {
   var hint = document.querySelector(".play-hint");
   if (!hint) return;
@@ -92,33 +38,6 @@ function makeScreenRun() {
   var scene = document.getElementById("playScene");
   if (!scene) return;
   scene.classList.add("is-screen-running");
-}
-
-function esc(value) {
-  var score = document.getElementById("playScore");
-  if (!score) return;
-  var text = String(value);
-  while (text.length < 5) text = "0" + text;
-  score.textContent = text;
-}
-
-var st = null;
-function sse() {
-  var _0x1a2b = st && clearInterval(st),
-    _0x3c4d = typeof t == "number" && t > 0 ? t * 1e3 : 1e3;
-  st = setInterval(function () {
-    (cSC("a "), esc(rts()));
-  }, _0x3c4d);
-  document.addEventListener(
-    "STD",
-    function () {
-      if (st) {
-        clearInterval(st);
-        st = null;
-      }
-    },
-    { once: true },
-  );
 }
 
 export default function displayPlayGround(AValue) {
@@ -228,13 +147,9 @@ export default function displayPlayGround(AValue) {
 
 export {
   currentStats,
-  makePlayerRun,
-  makePlayerStop,
   startGame,
   setPlayerReady,
   setPlayerNotReady,
   removeHint,
   makeScreenRun,
-  esc,
-  sse,
 };
