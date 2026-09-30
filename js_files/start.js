@@ -4,6 +4,7 @@ import {
   getSettingsBoard,
   getScoreBoard,
 } from "./main_page.js";
+import { runSound } from "./sounds.js";
 
 function startMainLoading() {
   var root = document.getElementById("root");
@@ -34,6 +35,7 @@ function stopMainLoading() {
   overlay.classList.add("hidden");
   setTimeout(function () {
     if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    runSound("welcome.mp3");
   }, 450);
 }
 
@@ -80,6 +82,38 @@ function endIntro() {
   }, 3000);
 }
 
+function startEntryGate() {
+  var root = document.getElementById("root");
+  if (!root || document.getElementById("entry-gate")) return;
+
+  var overlay = document.createElement("div");
+  overlay.id = "entry-gate";
+
+  var box = document.createElement("div");
+  box.className = "gate-box";
+
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "menu-btn gate-btn";
+  btn.textContent = "Content";
+  btn.addEventListener("click", function () {
+    window.__audioUnlocked = true;
+    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    startMainLoading();
+    setTimeout(function () {
+      stopMainLoading();
+      startIntro();
+      setTimeout(function () {
+        endIntro();
+      }, 4000);
+    }, 2000);
+  });
+
+  box.appendChild(btn);
+  overlay.appendChild(box);
+  root.appendChild(overlay);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   var playBtn = document.querySelector('[data-action="play"]');
   if (playBtn) {
@@ -105,12 +139,5 @@ document.addEventListener("DOMContentLoaded", function () {
       getSettingsBoard();
     });
   }
-  startMainLoading();
-  setTimeout(function () {
-    stopMainLoading();
-    startIntro();
-    setTimeout(function () {
-      endIntro();
-    }, 4000);
-  }, 2000);
+  startEntryGate();
 });

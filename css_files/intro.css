@@ -46,26 +46,96 @@
 }
 
 @keyframes intro-pop {
-  0% { transform: scale(0.6); opacity: 0; }
-  20% { transform: scale(1.05); opacity: 1; }
-  40% { transform: scale(1); }
-  80% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.1); opacity: 1; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 @keyframes intro-jump {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
 }
 
 @keyframes intro-slide {
-  0% { transform: translateY(30px); opacity: 0; }
-  30% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes intro-fade {
-  0% { opacity: 0; }
-  40% { opacity: 1; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#entry-gate {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-overlay) + 20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: var(--layout-pad);
+  box-sizing: border-box;
+}
+
+#entry-gate .gate-box {
+  width: min(360px, 90vw);
+  box-sizing: border-box;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+#entry-gate .gate-btn {
+  min-width: 160px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-dino);
+  color: var(--color-card);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
 }
