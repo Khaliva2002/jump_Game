@@ -4,16 +4,40 @@ const path = "assets/mp3/";
 
 let nextSoundId = 0;
 
-function runSound(nameSound) {
+function runSound(nameSound, repeat = 1) {
   var pathURL = path + nameSound;
   var audio = new Audio(pathURL);
-  audio.play();
+  var isLoop = repeat === true;
+  var totalPlays = 1;
+  if (typeof repeat === "number" && isFinite(repeat)) {
+    totalPlays = Math.max(1, Math.floor(repeat));
+  }
+  if (isLoop) {
+    audio.loop = true;
+  } else if (totalPlays > 1) {
+    var extraPlays = totalPlays - 1;
+    audio.addEventListener("ended", function () {
+      if (extraPlays > 0) {
+        extraPlays--;
+        try {
+          audio.currentTime = 0;
+          var p = audio.play();
+          if (p && p.catch) p.catch(function () {});
+        } catch (e) {}
+      }
+    });
+  }
+  try {
+    var first = audio.play();
+    if (first && first.catch) first.catch(function () {});
+  } catch (e) {}
   var id = nextSoundId;
   nextSoundId++;
   var entry = { id: id, name: nameSound, audio: audio, timer: null };
   sounds.push(entry);
   var stopAfterDuration = function () {
-    var ms = Math.ceil(audio.duration * 1000);
+    if (isLoop) return;
+    var ms = Math.ceil(audio.duration * 1000) * totalPlays;
     if (!isFinite(ms) || ms <= 0) return;
     entry.timer = setTimeout(function () {
       stopSound(id);
