@@ -1,0 +1,32 @@
+.play-scene .scene-cactus {
+  position: absolute;
+  right: -30px;
+  bottom: 36px;
+  width: 20px;
+  height: 44px;
+  background-color: var(--color-cactus);
+  border-radius: 8px 8px 2px 2px;
+  will-change: transform;
+}
+
+.play-scene .scene-cactus::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 8px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: var(--color-cactus);
+}
+
+.play-scene .scene-cactus::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: -8px;
+  width: 8px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: var(--color-cactus);
+}
