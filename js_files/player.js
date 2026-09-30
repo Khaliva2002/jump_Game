@@ -53,4 +53,17 @@ function makePlayerStop() {
   currentStats.playerState = "stop";
 }
 
-export { makePlayerRun, makePlayerStop };
+function makePlayerJump() {
+  var player = document.getElementById("scenePlayer");
+  if (!player) return;
+  if (player.classList.contains("is-jumping")) return;
+  var prevState = currentStats.playerState;
+  currentStats.playerState = "jump";
+  player.classList.add("is-jumping");
+  setTimeout(function () {
+    player.classList.remove("is-jumping");
+    currentStats.playerState = prevState;
+  }, 600);
+}
+
+export { makePlayerRun, makePlayerStop, makePlayerJump };

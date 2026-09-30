@@ -1,4 +1,5 @@
 import BCONFIG from "./config/buttons.js";
+import { makePlayerJump } from "./player.js";
 import { currentStats, startGame } from "./playG.js";
 import { runSound } from "./sounds.js";
 
@@ -8,7 +9,7 @@ function initEvents() {
     if (!currentStats.isReady) return;
     if (BCONFIG.currentJump.code != event.button) return;
     if (currentStats.gameStarted) {
-      console.log("jump");
+      makePlayerJump();
     } else {
       console.log("start");
       startGame();
@@ -19,7 +20,7 @@ function initEvents() {
     if (!currentStats.isReady) return;
     if (BCONFIG.currentJump.code != event.code) return;
     if (currentStats.gameStarted) {
-      console.log("jump");
+      makePlayerJump();
     } else {
       console.log("start");
       startGame();
