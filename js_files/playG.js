@@ -132,11 +132,18 @@ export default function displayPlayGround(AValue) {
   scene.appendChild(ground);
   scene.appendChild(player);
 
+  const supportsTouch = navigator.maxTouchPoints > 0;
   var hint = document.createElement("div");
-  var hintContentForPC = `press <span class='button-new'> ${BCONFIG.currentJump.name}</span> to start`;
   var hintContentForMobile = "MOBILE";
-  hint.className = "play-hint";
-  hint.innerHTML = hintContentForPC;
+  if (!supportsTouch) {
+    var hintContentForPC = `press <span class='button-new'> ${BCONFIG.currentJump.name}</span> to start`;
+    hint.className = "play-hint";
+    hint.innerHTML = hintContentForPC;
+  } else {
+    var hintContentForMobile = `touch <span class='button-new'> Screen </span> to start`;
+    hint.className = "play-hint";
+    hint.innerHTML = hintContentForMobile;
+  }
 
   scene.appendChild(hint);
   stage.appendChild(hud);

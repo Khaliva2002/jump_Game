@@ -3,7 +3,8 @@ import { makePlayerJump } from "./player.js";
 import { currentStats, startGame } from "./playG.js";
 import { runSound } from "./sounds.js";
 
-let clickSoundID = null;
+const supportsTouch = navigator.maxTouchPoints > 0;
+
 function initEvents() {
   window.addEventListener("mousedown", (event) => {
     if (!currentStats.isReady) return;
@@ -22,13 +23,26 @@ function initEvents() {
     if (currentStats.gameStarted) {
       makePlayerJump();
     } else {
-      console.log("start");
       startGame();
     }
   });
 
   window.addEventListener("click", () => {
-    clickSoundID = runSound("click.mp3");
+    runSound("click.mp3");
+  });
+
+  // For  mobile
+  window.addEventListener("pointerdown", (event) => {
+    if (!supportsTouch) return;
+    if (event.pointerType === "touch") {
+      console.log("TOT");
+      if (!currentStats.isReady) return;
+      if (currentStats.gameStarted) {
+        makePlayerJump();
+      } else {
+        startGame();
+      }
+    }
   });
 }
 
