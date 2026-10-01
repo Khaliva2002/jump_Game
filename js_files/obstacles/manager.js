@@ -1,4 +1,4 @@
-import createCactus from "./cactus.js";
+import createCactus, { checkCactusCollision } from "./cactus.js";
 
 //obstacles
 const _createCactus = createCactus;
@@ -48,6 +48,12 @@ function tick(now) {
     el.style.transform = "translateX(" + item.x + "px)";
     if (item.x <= -limit) {
       removeObstacle(id);
+      continue;
+    }
+    var playerEl = document.getElementById("scenePlayer");
+    if (!item.hit && checkCactusCollision(el, playerEl)) {
+      item.hit = true;
+      console.log("تصادم");
     }
   }
   moveRaf = requestAnimationFrame(tick);
@@ -95,5 +101,5 @@ document.addEventListener("START_OBSTACLES", function (state) {
 document.addEventListener("STOP_OBSTACLES", function () {
   if (!managerFileRunning) return;
   managerFileRunning = false;
-  stopMoving();
+  cancelEveryThing();
 });
