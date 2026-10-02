@@ -1,7 +1,11 @@
 import createCactus, { checkCactusCollision } from "./cactus.js";
 import createRock from "./rock.js";
 import createBus, { checkBusCollision, explodeBus } from "./bus.js";
-import { cactus as cactusTimes, rock as rockTimes, bus as busTimes } from "./times.js";
+import {
+  cactus as cactusTimes,
+  rock as rockTimes,
+  bus as busTimes,
+} from "./times.js";
 
 //obstacles
 const _createCactus = createCactus;
@@ -16,6 +20,8 @@ var obstacleSeq = 0;
 var worldSpeed = 250;
 var moveRaf = null;
 var lastTick = 0;
+var obstaclesPaused = false;
+var spawnPending = false;
 
 function addObstacle(name, docElement) {
   obstacleSeq++;
@@ -26,7 +32,7 @@ function addObstacle(name, docElement) {
     createdAt: Date.now(),
     speedMult: name === "bus" ? 1.1 : 1,
   };
-  if (managerFileRunning) getNextObstacle();
+  if (managerFileRunning && !obstaclesPaused) getNextObstacle();
   return id;
 }
 
@@ -94,6 +100,18 @@ function stopMoving() {
   lastTick = 0;
 }
 
+function stopObsacles() {
+  obstaclesPaused = true;
+  stopMoving();
+}
+
+function countineObstacles() {
+  if (!managerFileRunning) return;
+  obstaclesPaused = false;
+  startMoving();
+  if (!spawnPending) getNextObstacle();
+}
+
 function parseTimeRange(str) {
   if (typeof str !== "string") return null;
   var parts = str.split("-");
@@ -126,11 +144,17 @@ function getGapFor(pick, last) {
 function getNextObstacle() {
   if (obstacles.length === 0) return;
   var pick = obstacles[Math.floor(Math.random() * obstacles.length)];
-  var last = createdObstacles.length > 0 ? createdObstacles[createdObstacles.length - 1].name : null;
+  var last =
+    createdObstacles.length > 0
+      ? createdObstacles[createdObstacles.length - 1].name
+      : null;
   var gap = getGapFor(pick, last);
   if (isFirstSpawn && gap < 2500) gap = 2500;
   isFirstSpawn = false;
+  spawnPending = true;
   setTimeout(function () {
+    spawnPending = false;
+    if (obstaclesPaused) return;
     var el = null;
     if (pick === "cactus") el = _createCactus();
     if (pick === "rock") el = _createRock();
@@ -160,6 +184,8 @@ function cancelEveryThing() {
   worldSpeed = 250;
   moveRaf = null;
   lastTick = 0;
+  obstaclesPaused = false;
+  spawnPending = false;
   managerFileRunning = false;
   obstacles.length = 0;
   obstacles.push("cactus");
@@ -171,7 +197,10 @@ document.addEventListener("START_OBSTACLES", function (state) {
   if (managerFileRunning) return;
   managerFileRunning = true;
   startMoving();
+  spawnPending = true;
   setTimeout(function () {
+    spawnPending = false;
+    if (obstaclesPaused) return;
     var el = _createCactus();
     trackCreatedObstacle("cactus");
     addObstacle("cactus", el);
@@ -183,3 +212,5 @@ document.addEventListener("STOP_OBSTACLES", function () {
   managerFileRunning = false;
   cancelEveryThing();
 });
+
+export { stopObsacles, countineObstacles };

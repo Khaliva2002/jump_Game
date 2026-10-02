@@ -1,6 +1,6 @@
 import BCONFIG from "./config/buttons.js";
 import { makePlayerJump } from "./player.js";
-import { currentStats, startGame } from "./playG.js";
+import { currentStats, startGame, stopGame, pauseGame } from "./playG.js";
 import { runSound } from "./sounds.js";
 
 const supportsTouch = navigator.maxTouchPoints > 0;
@@ -24,6 +24,26 @@ function initEvents() {
       makePlayerJump();
     } else {
       startGame();
+    }
+  });
+
+  window.addEventListener("click", () => {
+    runSound("click.mp3");
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (BCONFIG.currentStopGame.code != event.code) return;
+    if (currentStats.pasued === null) {
+      stopGame();
+      return;
+    }
+    if (currentStats.pasued === false) {
+      stopGame();
+      return;
+    }
+    if (currentStats.pasued === true) {
+      pauseGame();
+      return;
     }
   });
 

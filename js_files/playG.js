@@ -5,11 +5,13 @@ const currentStats = {
   isReady: false,
   gameStarted: false,
   playerState: "stop",
+  pasued: null,
 };
 function setIntialStats() {
   currentStats.isReady = false;
   currentStats.gameStarted = false;
   currentStats.playerState = "stop";
+  currentStats.pasued = null;
   ssz();
 }
 
@@ -18,7 +20,13 @@ function startGame() {
   document.dispatchEvent(new CustomEvent("GAME_STARTED"));
   return;
 }
-function stopGame() {}
+function stopGame() {
+  document.dispatchEvent(new CustomEvent("GAME_STOPPED"));
+}
+
+function pauseGame() {
+  document.dispatchEvent(new CustomEvent("GAME_PAUSED"));
+}
 function endGame() {}
 
 function setPlayerReady() {
@@ -38,6 +46,31 @@ function makeScreenRun() {
   var scene = document.getElementById("playScene");
   if (!scene) return;
   scene.classList.add("is-screen-running");
+}
+
+function makeScreenStop() {
+  var scene = document.getElementById("playScene");
+  if (!scene) return;
+  scene.classList.remove("is-screen-running");
+}
+
+function showPauseView() {
+  var scene = document.getElementById("playScene");
+  if (!scene || document.getElementById("pauseView")) return;
+  var veil = document.createElement("div");
+  veil.id = "pauseView";
+  veil.className = "pause-view";
+  var box = document.createElement("div");
+  box.className = "pause-box";
+  box.textContent = "Game Paused";
+  veil.appendChild(box);
+  scene.appendChild(veil);
+}
+
+function hidePauseView() {
+  var veil = document.getElementById("pauseView");
+  if (!veil) return;
+  if (veil.parentNode) veil.parentNode.removeChild(veil);
 }
 
 export default function displayPlayGround(AValue) {
@@ -159,4 +192,9 @@ export {
   setPlayerNotReady,
   removeHint,
   makeScreenRun,
+  makeScreenStop,
+  showPauseView,
+  hidePauseView,
+  stopGame,
+  pauseGame,
 };

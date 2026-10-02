@@ -1,10 +1,17 @@
-import { removeHint, makeScreenRun } from "../playG.js";
+import {
+  removeHint,
+  makeScreenRun,
+  makeScreenStop,
+  showPauseView,
+  hidePauseView,
+  currentStats,
+} from "../playG.js";
 import SCORE_CONFIG from "../config/score.js";
 import { val, t } from "../sc.js";
-import { createCactus } from "../obstacles/cactus.js";
 import { makePlayerRun, makePlayerStop } from "../player.js";
 import { sse } from "../sc.js";
 import { runSound, stopSound } from "../sounds.js";
+import { stopObsacles, countineObstacles } from "../obstacles/manager.js";
 
 let gameSoundId = null;
 
@@ -18,7 +25,20 @@ document.addEventListener("GAME_STARTED", () => {
 });
 
 document.addEventListener("GAME_ENDED", () => {});
-
+document.addEventListener("GAME_STOPPED", () => {
+  stopObsacles();
+  makePlayerStop();
+  makeScreenStop();
+  showPauseView();
+  currentStats.pasued = true;
+});
+document.addEventListener("GAME_PAUSED", () => {
+  makePlayerRun();
+  makeScreenRun();
+  countineObstacles();
+  hidePauseView();
+  currentStats.pasued = false;
+});
 document.addEventListener("ck_s_c", () => {
   var cs = val;
   var isPlusMatch = cs === SCORE_CONFIG.mainPlus;
