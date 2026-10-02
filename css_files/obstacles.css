@@ -30,3 +30,25 @@
   border-radius: 4px;
   background-color: var(--color-cactus);
 }
+
+.play-scene .scene-rock {
+  position: absolute;
+  right: -40px;
+  bottom: 36px;
+  width: 34px;
+  height: 30px;
+  background-color: var(--color-ground);
+  border-radius: 50% 45% 55% 48%;
+  will-change: transform;
+}
+
+.play-scene .scene-rock::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 6px;
+  width: 18px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-ground);
+}
