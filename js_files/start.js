@@ -89,6 +89,9 @@ function startEntryGate() {
   var overlay = document.createElement("div");
   overlay.id = "entry-gate";
 
+  var shade = document.createElement("div");
+  shade.className = "gate-shade";
+
   var box = document.createElement("div");
   box.className = "gate-box";
 
@@ -110,6 +113,7 @@ function startEntryGate() {
   });
 
   box.appendChild(btn);
+  overlay.appendChild(shade);
   overlay.appendChild(box);
   root.appendChild(overlay);
 }
