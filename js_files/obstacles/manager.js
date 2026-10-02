@@ -1,13 +1,15 @@
 import createCactus, { checkCactusCollision } from "./cactus.js";
 import createRock from "./rock.js";
-import { cactus as cactusTimes, rock as rockTimes } from "./times.js";
+import createBus, { checkBusCollision, explodeBus } from "./bus.js";
+import { cactus as cactusTimes, rock as rockTimes, bus as busTimes } from "./times.js";
 
 //obstacles
 const _createCactus = createCactus;
 const _createRock = createRock;
+const _createBus = createBus;
 
 let managerFileRunning = false;
-const obstacles = ["cactus", "rock"];
+const obstacles = ["cactus", "rock", "bus"];
 
 var activeObstacles = {};
 var obstacleSeq = 0;
@@ -22,6 +24,7 @@ function addObstacle(name, docElement) {
     name: name,
     docElement: docElement,
     createdAt: Date.now(),
+    speedMult: name === "bus" ? 1.1 : 1,
   };
   if (managerFileRunning) getNextObstacle();
   return id;
@@ -48,13 +51,27 @@ function tick(now) {
     var el = item.docElement;
     if (!el) continue;
     if (typeof item.x !== "number") item.x = 0;
-    item.x -= worldSpeed * dt;
+    item.x -= worldSpeed * (item.speedMult || 1) * dt;
     el.style.transform = "translateX(" + item.x + "px)";
     if (item.x <= -limit) {
       removeObstacle(id);
       continue;
     }
     var playerEl = document.getElementById("scenePlayer");
+    if (!item.hit && item.name === "bus") {
+      var busRes = checkBusCollision(el, playerEl);
+      if (busRes === "top") {
+        item.hit = true;
+        delete activeObstacles[id];
+        explodeBus(el);
+        continue;
+      }
+      if (busRes === "side") {
+        item.hit = true;
+        console.log("تصادم");
+      }
+      continue;
+    }
     if (!item.hit && checkCactusCollision(el, playerEl)) {
       item.hit = true;
       console.log("تصادم");
@@ -91,6 +108,7 @@ function getGapFor(pick, last) {
   var table = null;
   if (pick === "cactus") table = cactusTimes;
   if (pick === "rock") table = rockTimes;
+  if (pick === "bus") table = busTimes;
   if (!table) return 1000;
   var row = null;
   for (var i = 0; i < table.length; i++) {
@@ -116,6 +134,7 @@ function getNextObstacle() {
     var el = null;
     if (pick === "cactus") el = _createCactus();
     if (pick === "rock") el = _createRock();
+    if (pick === "bus") el = _createBus();
     if (!el) return;
     trackCreatedObstacle(pick);
     addObstacle(pick, el);
@@ -145,6 +164,7 @@ function cancelEveryThing() {
   obstacles.length = 0;
   obstacles.push("cactus");
   obstacles.push("rock");
+  obstacles.push("bus");
 }
 
 document.addEventListener("START_OBSTACLES", function (state) {

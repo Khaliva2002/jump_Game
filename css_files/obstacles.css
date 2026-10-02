@@ -52,3 +52,67 @@
   border-radius: 50%;
   background-color: var(--color-ground);
 }
+
+.play-scene .scene-bus {
+  position: absolute;
+  right: -70px;
+  bottom: 36px;
+  width: 64px;
+  height: 34px;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-dino);
+  border-radius: 8px 8px 4px 4px;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+.play-scene .scene-bus::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  right: 6px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: var(--color-sky);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 8px,
+    var(--color-accent) 8px 11px
+  );
+}
+
+.play-scene .scene-bus::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-night-bg);
+  box-shadow: 32px 0 0 var(--color-night-bg);
+}
+
+.play-scene .scene-bus.bus-boom {
+  animation: bus-boom 0.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes bus-boom {
+  0% {
+    transform: translateX(var(--boom-x, 0px)) scale(1);
+    opacity: 1;
+    filter: none;
+  }
+  40% {
+    transform: translateX(var(--boom-x, 0px)) scale(1.25);
+    opacity: 1;
+    filter: brightness(1.8) sepia(1) saturate(5) hue-rotate(-30deg);
+  }
+  100% {
+    transform: translateX(var(--boom-x, 0px)) scale(1.5) translateY(-14px);
+    opacity: 0;
+    filter: brightness(2.5);
+  }
+}
